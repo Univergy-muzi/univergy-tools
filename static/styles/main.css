@@ -1,0 +1,345 @@
+/* ================== 기본 변수 정의 ================== */
+:root {
+  --primary-color: #1976d2;
+  --primary-hover: #1459a0;
+  --danger-color: #d32f2f;
+  --light-gray: #f5f5f5;
+  --border-color: #ccc;
+  --border-radius: 8px;
+  --transition-speed: 0.2s;
+  --section-bg: #fcfcfc;
+}
+
+/* ================== 공통 영역 ================== */
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+header,
+nav {
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+
+.page-header {
+  padding: 1rem;
+}
+
+main.container {
+  padding: 1rem;
+}
+
+/* ================== 로고 영역 ================== */
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+}
+
+.logo-link {
+  display: inline-block;
+  text-align: center;
+  transition: opacity var(--transition-speed) ease-in-out;
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.logo-centered {
+  display: block;
+  margin: 0 auto 0.5rem;
+  max-width: 500px;
+  height: auto;
+}
+
+/* ================== 내비게이션 ================== */
+
+.nav-button {
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed);
+  font-size: 1rem;
+}
+
+.nav-button:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.03);
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.1rem;
+  padding: 0.25rem;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+nav ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li strong {
+  white-space: nowrap;
+  font-size: 1.1rem;
+}
+
+
+/* ================== 섹션 및 카드 ================== */
+
+.tool-section {
+  margin-top: 0.4rem;
+  padding: 1.5rem;
+  background-color: var(--section-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+/* ================== 버튼 ================== */
+
+.custom-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color var(--transition-speed) ease;
+  font-size: 1rem;
+}
+
+.custom-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+button, .custom-btn, .contrast, .secondary {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ================== XML 분석 도구 ================== */
+
+.xml-tool-group h4 {
+  margin-bottom: 0.3rem;
+}
+
+.file-list-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#fileListContainer ul {
+  padding-left: 1rem;
+}
+
+/* ================== 캘린더 전용 ================== */
+
+#calendar-container {
+  margin: auto;
+  margin-top: 0;
+  max-width: 100%;
+  height: 700px; /* 강제로 공간 확보 */
+}
+
+#schedule-list li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: var(--light-gray);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#schedule-list button {
+  margin-left: 0.5rem;
+  background: var(--danger-color);
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#schedule-list button.edit {
+  background: var(--primary-color);
+}
+
+.fc-toolbar-title {
+  font-size: 2rem !important;
+  text-align: center;
+  font-weight: 600;
+  color: #222;
+}
+
+.fc-col-header-cell-cushion {
+  font-size: 0.8rem !important;
+  padding: 0.25rem !important;
+  white-space: nowrap;
+}
+
+/* ✅ 5. 주간 달력 날짜 헤더 자동 폰트 조정 */
+.fc .fc-col-header-cell {
+  text-align: center;
+  font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+}
+
+/* ================== 모달 ================== */
+
+.modal dialog {
+  color: #111 !important;
+  background-color: #fefefe !important;
+}
+
+.modal dialog h4,
+.modal dialog p,
+.modal dialog span,
+.modal dialog label,
+.modal dialog input,
+.modal dialog textarea{
+  color: #000000 !important;
+}
+
+.modal dialog button {
+  color: #8fb9e0 !important;
+}
+
+#eventModal[open],
+#eventDetailModal[open] {
+  display: block !important;
+}
+
+#eventDetailModal dialog {
+  max-width: 92vw !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 1.2rem 1.2rem !important;
+}
+
+
+/* ================== 기타 ================== */
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* ================== 반응형 대응 / 모바일 최적화 ================== */
+
+@media (max-width: 480px) {
+  .nav-button {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+  }
+
+  nav ul li strong {
+    font-size: 0.9rem;
+  }
+
+  .logo-centered {
+    max-width: 220px;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo-wrapper {
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  .custom-btn {
+    font-size: 0.9rem;
+    padding: 10px 16px;
+  }
+
+  main.container {
+    padding: 0.8rem;
+  }
+
+  .tool-section {
+    padding: 1rem;
+  }
+  /* 추가 스타일만 덧붙이기 */
+  body,
+  p,
+  h1, h2, h3, h4, h5, h6,
+  li,
+  label,
+  small {
+    color: #111 !important;
+  }
+
+  .nav-buttons .nav-button {
+    flex: 1 1 30%;
+    max-width: 140px;
+    text-align: center;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .fc-header-toolbar {
+    margin-bottom: 0.5rem !important;
+  }
+
+  #eventModal dialog,
+  #eventDetailModal dialog {
+    width: 95% !important;
+    max-width: 96vw;
+    padding: 1.2rem 1rem !important;
+  }
+
+  #eventModal input,
+  #eventModal textarea,
+  #eventDetailModal textarea {
+    font-size: 0.9rem;
+  }
+
+  .fc-daygrid-day-number {
+    font-size: 0.75rem;
+  }
+}
