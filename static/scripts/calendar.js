@@ -30,6 +30,14 @@ function renderCalendarPage() {
           openEventPrompt(dateStr, calendar, hour, minute);
         },
 
+        dateClick: function (info) {
+          const startDate = info.start;
+          const dateStr = info.startStr.split("T")[0];
+          const hour = startDate.getHours();
+          const minute = startDate.getMinutes();
+          openEventPrompt(dateStr, calendar, hour, minute);
+        },
+
         eventContent: function (arg) {
           if (arg.view.type === "dayGridMonth") {
             return { html: `<b>${arg.event.title}</b>` };

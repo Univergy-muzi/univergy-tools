@@ -254,6 +254,19 @@ footer {
 /* ================== 반응형 대응 / 모바일 최적화 ================== */
 
 @media (max-width: 480px) {
+  /* ================== 로고 ================== */
+
+  .logo-centered {
+    max-width: 220px;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo-wrapper {
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  /* ================== 네비게이션 ================== */
+
   .nav-button {
     font-size: 0.8rem;
     padding: 0.3rem 0.6rem;
@@ -264,14 +277,7 @@ footer {
     font-size: 0.9rem;
   }
 
-  .logo-centered {
-    max-width: 220px;
-    margin-bottom: 0.5rem;
-  }
-
-  .logo-wrapper {
-    margin: 0.5rem 0 0.2rem;
-  }
+  /* ================== 홈 ================== */
 
   h2 {
     font-size: 1.2rem;
@@ -285,6 +291,18 @@ footer {
     font-size: 0.9rem;
   }
 
+  /* 추가 스타일만 덧붙이기 */
+  body,
+  p,
+  h1, h2, h3, h4, h5, h6,
+  li,
+  label,
+  small {
+    color: #111 !important;
+  }
+
+  /* ================== 버튼 ================== */
+
   .custom-btn {
     font-size: 0.9rem;
     padding: 10px 16px;
@@ -296,15 +314,6 @@ footer {
 
   .tool-section {
     padding: 1rem;
-  }
-  /* 추가 스타일만 덧붙이기 */
-  body,
-  p,
-  h1, h2, h3, h4, h5, h6,
-  li,
-  label,
-  small {
-    color: #111 !important;
   }
 
   .nav-buttons .nav-button {
@@ -342,4 +351,14 @@ footer {
   .fc-daygrid-day-number {
     font-size: 0.75rem;
   }
+
+  .modal dialog h4,
+  .modal dialog p,
+  .modal dialog span,
+  .modal dialog label,
+  .modal dialog input,
+  .modal dialog textarea{
+    color: #ffffff !important;
+  }
+
 }
