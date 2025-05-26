@@ -105,12 +105,19 @@ main.container {
   background-color: var(--section-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
+  color: #000 !important;
 }
 
 .xml-tool-group h4,
 .xml-tool-group p,
 .xml-tool-group label,
 .xml-tool-group span {
+  color: #000 !important;
+}
+
+.explain-section h2,
+.explain-section h3,
+.explain-section p{
   color: #000 !important;
 }
 
@@ -231,13 +238,5 @@ footer {
 
   .fc-daygrid-day-number {
     font-size: 0.75rem;
-  }
-
-  .tool-section{
-    color: #000;
-  }
-
-  .xml-tool-group {
-    color: #000;
   }
 }
