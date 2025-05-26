@@ -236,18 +236,19 @@ input[type="file"] {
 
 #eventDetailModal dialog,
 #eventModal dialog {
-  width: 92vw !important;
-  max-width: 96vw;
+  width: 100vw;
+  max-width: 95vw;
   max-height: 90vh;
+  margin: 0;
+  padding: 1.5rem 1rem;
   box-sizing: border-box;
-  padding: 1.5rem 1rem !important;
-  margin: 0 auto;
   overflow: auto;
-  border-radius: 8px;
   background-color: #fefefe;
+  border: none;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 #eventDetailModal,
@@ -260,10 +261,11 @@ input[type="file"] {
   margin: 0;
   padding: 0;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.5); /* 배경 반투명 처리 */
+  background-color: rgba(0, 0, 0, 0.6); /* 더 어두운 배경 */
   display: flex;
-  align-items: center;   /* 세로 중앙 정렬 */
-  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 /* ================== 기타 ================== */
 
@@ -358,12 +360,12 @@ footer {
     margin-bottom: 0.5rem !important;
   }
 
-  #eventModal dialog,
-  #eventDetailModal dialog {
-    width: 94vw !important;
-    max-width: 96vw;
+  #eventDetailModal dialog,
+  #eventModal dialog {
+    width: 95vw;
+    max-width: 95vw;
     max-height: 85vh;
-    padding: 1.2rem 0.8rem !important;
+    padding: 1rem;
     overflow-y: auto;
   }
 
