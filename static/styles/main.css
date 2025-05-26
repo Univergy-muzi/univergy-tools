@@ -107,6 +107,13 @@ main.container {
   border-radius: var(--border-radius);
 }
 
+.xml-tool-group h4,
+.xml-tool-group p,
+.xml-tool-group label,
+.xml-tool-group span {
+  color: #000 !important;
+}
+
 /* ========== Footer ========== */
 footer {
   margin-top: 2rem;
