@@ -266,6 +266,14 @@ input[type="file"] {
   overflow: hidden;
 }
 
+#eventDetailModal dialog .button-group,
+#eventModal dialog .button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
 /* ================== 기타 ================== */
 
 footer {
