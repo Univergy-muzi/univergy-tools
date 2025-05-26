@@ -225,4 +225,8 @@ footer {
   .fc-daygrid-day-number {
     font-size: 0.75rem;
   }
+  
+  h2, h3, p, .tool-section {
+    color: #000;
+  }
 }
