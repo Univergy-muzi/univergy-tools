@@ -179,7 +179,15 @@ function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0) {
   const endMin = (baseMinute + 60) % 60;
   const defaultEnd = `${pad(endHour)}${pad(endMin)}`;
 
-  document.getElementById("eventModal").style.display = "block";
+  const modal = document.getElementById("eventModal");
+  modal.style.display = "block";
+
+  // ✅ 모달 열릴 때 스크롤 맨 위로 초기화
+  const dialog = modal.querySelector("dialog");
+  if (dialog) {
+    dialog.scrollTop = 0;
+  }
+
   document.getElementById("eventTitle").value = "";
   document.getElementById("eventDate").value = dateStr;
   document.getElementById("startTime").value = defaultStart;

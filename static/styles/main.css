@@ -128,7 +128,9 @@ main.container {
 
 /* ========== Footer ========== */
 footer {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.1rem;
+  padding-bottom: 0.1rem;
   text-align: center;
   font-size: 0.85rem;
   color: #888;
