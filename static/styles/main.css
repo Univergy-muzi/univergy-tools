@@ -232,6 +232,7 @@ footer {
   .modal-wrapper {
     align-items: flex-start;     /* ✅ 위에서 열 때도 여유 확보 */
     padding-top: 2vh;            /* ✅ 상단 약간 여백 */
+    padding-bottom: 2vh;   
   }
 
   .modal-dialog {
@@ -253,6 +254,7 @@ footer {
 
   .modal-dialog footer {
     margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
   }
 
   .modal-index p{
