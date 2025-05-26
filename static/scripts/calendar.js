@@ -25,7 +25,7 @@ function renderCalendarPage() {
 
         dateClick: function (info) {
           const dateObj = info.date || new Date();
-          const dateStr = dateObj.toISOString().split("T")[0];
+          const dateStr = formatDateLocal(dateObj); // ✅ 현지 기준 날짜
           const hour = dateObj.getHours();
           const minute = dateObj.getMinutes();
           openEventPrompt(dateStr, calendar, hour, minute);
@@ -245,6 +245,12 @@ function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0) {
   };
 }
 
+function formatDateLocal(dateObj) {
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 0-indexed
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
 
 // ------------------ 2. 최초 DOM 로드 ------------------
 document.addEventListener("DOMContentLoaded", function () {
