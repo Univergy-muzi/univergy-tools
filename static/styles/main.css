@@ -179,7 +179,6 @@ footer {
 .modal-dialog {
   width: 100%;
   max-width: 95vw;
-  max-height: 90vh;
   padding: 1.5rem 1rem;
   margin: 0;
   border: none;
@@ -189,7 +188,9 @@ footer {
   color: var(--modal-text-color);
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: visible; /* ✅ 항상 스크롤 없이 표시 */
+  height: auto;         /* ✅ 내용에 따라 높이 자동 조절 */
+  max-height: none;     /* ✅ 강제 제한 제거 */
 }
 
 .modal-dialog .button-group {
@@ -226,15 +227,30 @@ footer {
     height: auto;
   }
 
+  .modal-wrapper {
+    align-items: flex-start;     /* ✅ 위에서 열 때도 여유 확보 */
+    padding-top: 2vh;            /* ✅ 상단 약간 여백 */
+  }
+
   .modal-dialog {
-    padding: 1rem;
-    max-height: 85vh;
+    width: 94vw;
+    padding: 1rem 0.8rem;
+    max-height: none;
+    height: auto;
+    overflow: visible;
     color: var(--modal-text-color-mobile);
+    border-radius: 10px;
   }
 
   .modal-dialog input,
-  .modal-dialog textarea {
+  .modal-dialog textarea,
+  .modal-dialog select {
     font-size: 16px !important;
+    margin-bottom: 0.6rem;
+  }
+
+  .modal-dialog footer {
+    margin-top: 0.8rem;
   }
 
   .modal-index p{
