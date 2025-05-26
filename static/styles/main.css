@@ -8,13 +8,13 @@
   --border-radius: 8px;
   --transition-speed: 0.2s;
   --section-bg: #fcfcfc;
-  --modal-text-color: #000;
-  --modal-text-color-mobile: #ffffff;
+  --modal-text-color: #001520;
+  --modal-text-color-mobile: #eff9fc;
 }
 
 /* ========== Base Layout ========== */
 body {
-  background-color: #fff;
+  background-color: #fafdff;
   color: #333;
   font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
@@ -80,7 +80,7 @@ main.container {
   padding: 0.5rem 1rem;
   border-radius: 6px;
   background-color: var(--primary-color);
-  color: white;
+  color: rgb(255, 246, 246);
   font-weight: bold;
   font-size: 1rem;
   text-decoration: none;
@@ -105,25 +105,25 @@ main.container {
   background-color: var(--section-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
-  color: #000 !important;
+  color: #001522 !important;
 }
 
 .tool-section h3,
 .tool-section, p{
-  color: #000 !important;
+  color: #001522 !important;
 }
 
 .xml-tool-group h4,
 .xml-tool-group p,
 .xml-tool-group label,
 .xml-tool-group span {
-  color: #000 !important;
+  color: #001522 !important;
 }
 
 .explain-section h2,
 .explain-section h3,
 .explain-section p{
-  color: #000 !important;
+  color: #001522 !important;
 }
 
 /* ========== Footer ========== */
@@ -146,7 +146,7 @@ footer {
   font-size: 2rem !important;
   text-align: center;
   font-weight: 600;
-  color: #222;
+  color: #001522;
 }
 
 .fc-col-header-cell-cushion {
@@ -185,7 +185,7 @@ footer {
   border: none;
   border-radius: 10px;
   box-sizing: border-box;
-  background-color: #fefefe;
+  background-color: #fcf6f6;
   color: var(--modal-text-color);
   display: flex;
   flex-direction: column;
@@ -238,7 +238,7 @@ footer {
   }
 
   .modal-index p{
-    color: #ffffff !important;
+    color: #f7fbff !important;
   }
 
   .fc-toolbar-title {
