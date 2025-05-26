@@ -234,14 +234,37 @@ input[type="file"] {
   display: block !important;
 }
 
-#eventDetailModal dialog {
-  max-width: 92vw !important;
-  width: 100% !important;
+#eventDetailModal dialog,
+#eventModal dialog {
+  width: 92vw !important;
+  max-width: 96vw;
+  max-height: 90vh;
   box-sizing: border-box;
-  padding: 1.2rem 1.2rem !important;
+  padding: 1.5rem 1rem !important;
+  margin: 0 auto;
+  overflow: auto;
+  border-radius: 8px;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
+#eventDetailModal,
+#eventModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 반투명 처리 */
+  display: flex;
+  align-items: center;   /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+}
 /* ================== 기타 ================== */
 
 footer {
@@ -337,9 +360,11 @@ footer {
 
   #eventModal dialog,
   #eventDetailModal dialog {
-    width: 95% !important;
+    width: 94vw !important;
     max-width: 96vw;
-    padding: 1.2rem 1rem !important;
+    max-height: 85vh;
+    padding: 1.2rem 0.8rem !important;
+    overflow-y: auto;
   }
 
   #eventModal input,
