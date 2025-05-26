@@ -8,14 +8,16 @@
   --border-radius: 8px;
   --transition-speed: 0.2s;
   --section-bg: #fcfcfc;
+  --modal-text-color: #000;
 }
 
 /* ================== 공통 영역 ================== */
-
 body {
   background-color: #fff;
   color: #333;
   font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 header,
@@ -33,7 +35,6 @@ main.container {
 }
 
 /* ================== 로고 영역 ================== */
-
 .logo-wrapper {
   display: flex;
   justify-content: center;
@@ -60,7 +61,6 @@ main.container {
 }
 
 /* ================== 내비게이션 ================== */
-
 .nav-button {
   padding: 0.3rem 0.7rem;
   border-radius: 6px;
@@ -70,9 +70,8 @@ main.container {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  margin: 0;
-  transition: background-color var(--transition-speed) ease, transform var(--transition-speed);
   font-size: 1rem;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 .nav-button:hover {
@@ -86,13 +85,10 @@ nav ul {
   justify-content: center;
   gap: 0.1rem;
   padding: 0.25rem;
-  margin: 0;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
 }
 
 nav ul li {
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
@@ -101,9 +97,7 @@ nav ul li strong {
   font-size: 1.1rem;
 }
 
-
 /* ================== 섹션 및 카드 ================== */
-
 .tool-section {
   margin-top: 0.4rem;
   padding: 1.5rem;
@@ -113,7 +107,6 @@ nav ul li strong {
 }
 
 /* ================== 버튼 ================== */
-
 .custom-btn {
   display: inline-block;
   width: 100%;
@@ -125,8 +118,8 @@ nav ul li strong {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 1rem;
-  transition: background-color var(--transition-speed) ease;
   font-size: 1rem;
+  transition: background-color var(--transition-speed) ease;
 }
 
 .custom-btn:hover {
@@ -139,7 +132,6 @@ button, .custom-btn, .contrast, .secondary {
 }
 
 /* ================== XML 분석 도구 ================== */
-
 .xml-tool-group h4 {
   margin-bottom: 0.3rem;
 }
@@ -158,12 +150,11 @@ input[type="file"] {
 }
 
 /* ================== 캘린더 전용 ================== */
-
 #calendar-container {
   margin: auto;
   margin-top: 0;
   max-width: 100%;
-  height: 700px; /* 강제로 공간 확보 */
+  height: 700px;
 }
 
 #schedule-list li {
@@ -203,57 +194,15 @@ input[type="file"] {
   white-space: nowrap;
 }
 
-/* ✅ 5. 주간 달력 날짜 헤더 자동 폰트 조정 */
 .fc .fc-col-header-cell {
   text-align: center;
   font-size: clamp(0.65rem, 2.5vw, 0.85rem);
 }
 
 /* ================== 모달 ================== */
-
-.modal dialog {
-  color: #111 !important;
-  background-color: #fefefe !important;
-}
-
-.modal dialog h4,
-.modal dialog p,
-.modal dialog span,
-.modal dialog label,
-.modal dialog input,
-.modal dialog textarea{
-  color: #000000 !important;
-}
-
-.modal dialog button {
-  color: #8fb9e0 !important;
-}
-
-#eventModal[open],
-#eventDetailModal[open] {
-  display: block !important;
-}
-
-#eventDetailModal dialog,
-#eventModal dialog {
-  width: 100%;
-  max-width: 95vw;
-  max-height: 90vh;
-  margin: 0;
-  padding: 1.5rem 1rem;
-  box-sizing: border-box;
-  background-color: #fefefe;
-  border: none;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-#eventDetailModal,
-#eventModal {
+.modal-wrapper {
   position: fixed;
-  inset: 0; /* top/right/bottom/left: 0; 대체 */
+  inset: 0;
   width: 100vw;
   height: 100vh;
   margin: 0;
@@ -266,8 +215,23 @@ input[type="file"] {
   overflow: hidden;
 }
 
-#eventDetailModal dialog .button-group,
-#eventModal dialog .button-group {
+.modal-dialog {
+  width: 100%;
+  max-width: 95vw;
+  max-height: 90vh;
+  padding: 1.5rem 1rem;
+  margin: 0;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #fefefe;
+  color: var(--modal-text-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.modal-dialog .button-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -275,7 +239,6 @@ input[type="file"] {
 }
 
 /* ================== 기타 ================== */
-
 footer {
   margin-top: 2rem;
   text-align: center;
@@ -283,11 +246,8 @@ footer {
   color: #888;
 }
 
-/* ================== 반응형 대응 / 모바일 최적화 ================== */
-
+/* ================== 반응형 대응 ================== */
 @media (max-width: 480px) {
-  /* ================== 로고 ================== */
-
   .logo-centered {
     max-width: 220px;
     margin-bottom: 0.5rem;
@@ -296,8 +256,6 @@ footer {
   .logo-wrapper {
     margin: 0.5rem 0 0.2rem;
   }
-
-  /* ================== 네비게이션 ================== */
 
   .nav-button {
     font-size: 0.8rem;
@@ -309,31 +267,13 @@ footer {
     font-size: 0.9rem;
   }
 
-  /* ================== 홈 ================== */
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1rem; }
+  p  { font-size: 0.9rem; }
 
-  h2 {
-    font-size: 1.2rem;
+  body, p, h1, h2, h3, h4, h5, h6, li, label, small {
+    color: #111;
   }
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  p {
-    font-size: 0.9rem;
-  }
-
-  /* 추가 스타일만 덧붙이기 */
-  body,
-  p,
-  h1, h2, h3, h4, h5, h6,
-  li,
-  label,
-  small {
-    color: #111 !important;
-  }
-
-  /* ================== 버튼 ================== */
 
   .custom-btn {
     font-size: 0.9rem;
@@ -359,41 +299,24 @@ footer {
     font-weight: 600;
     color: #222;
     text-align: center;
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
+    margin: 0.2rem 0;
   }
 
   .fc-header-toolbar {
     margin-bottom: 0.5rem !important;
   }
 
-  #eventDetailModal dialog,
-  #eventModal dialog {
-    width: 95vw;
-    max-width: 95vw;
-    max-height: 85vh;
+  .modal-dialog {
     padding: 1rem;
-    margin: 0 auto;
-    overflow-y: auto;
+    max-height: 85vh;
   }
 
-  #eventModal input,
-  #eventModal textarea,
-  #eventDetailModal textarea {
+  .modal-dialog input,
+  .modal-dialog textarea {
     font-size: 0.9rem;
   }
 
   .fc-daygrid-day-number {
     font-size: 0.75rem;
   }
-
-  .modal dialog h4,
-  .modal dialog p,
-  .modal dialog span,
-  .modal dialog label,
-  .modal dialog input,
-  .modal dialog textarea{
-    color: #ffffff !important;
-  }
-
 }
