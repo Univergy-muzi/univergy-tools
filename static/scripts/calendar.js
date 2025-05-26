@@ -24,20 +24,20 @@ function renderCalendarPage() {
         events: events,
 
         dateClick: function (info) {
-          const startDate = info.start;
-          const dateStr = info.startStr.split("T")[0];
-          const hour = startDate.getHours();
-          const minute = startDate.getMinutes();
+          const startDate = info.date;  // ✅ 수정된 부분
+          const dateStr = info.dateStr;
+          const hour = startDate.getHours?.() || 9;
+          const minute = startDate.getMinutes?.() || 0;
           openEventPrompt(dateStr, calendar, hour, minute);
         },
 
-        select: function (info) {
-          const startDate = info.start;
-          const dateStr = info.startStr.split("T")[0];
-          const hour = startDate.getHours();
-          const minute = startDate.getMinutes();
-          openEventPrompt(dateStr, calendar, hour, minute);
-        },
+        // select: function (info) {
+        //   const startDate = info.start;
+        //   const dateStr = info.startStr.split("T")[0];
+        //   const hour = startDate.getHours();
+        //   const minute = startDate.getMinutes();
+        //   openEventPrompt(dateStr, calendar, hour, minute);
+        // },
 
         eventContent: function (arg) {
           if (arg.view.type === "dayGridMonth") {
