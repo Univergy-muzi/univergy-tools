@@ -236,37 +236,36 @@ input[type="file"] {
 
 #eventDetailModal dialog,
 #eventModal dialog {
-  width: 100vw;
+  width: 100%;
   max-width: 95vw;
   max-height: 90vh;
   margin: 0;
   padding: 1.5rem 1rem;
   box-sizing: border-box;
-  overflow: auto;
   background-color: #fefefe;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  overflow-y: auto;
 }
 
 #eventDetailModal,
 #eventModal {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0; /* top/right/bottom/left: 0; 대체 */
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.6); /* 더 어두운 배경 */
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
+
 /* ================== 기타 ================== */
 
 footer {
@@ -366,6 +365,7 @@ footer {
     max-width: 95vw;
     max-height: 85vh;
     padding: 1rem;
+    margin: 0 auto;
     overflow-y: auto;
   }
 
