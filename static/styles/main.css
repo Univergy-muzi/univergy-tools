@@ -226,7 +226,7 @@ footer {
     font-size: 0.75rem;
   }
   
-  h2, h3, p, .tool-section {
+  .xml-tool-group {
     color: #000;
   }
 }
