@@ -14,7 +14,8 @@ function renderCalendarPage() {
         initialView: "dayGridMonth",
         locale: "ja",
         timeZone: "local",
-        selectable: true,
+        eventLongPressDelay: 0,
+        selectLongPressDelay: 0,
         headerToolbar: {
           left: "prev,next",
           center: "title",
@@ -22,7 +23,7 @@ function renderCalendarPage() {
         },
         events: events,
 
-        select: function (info) {
+        dateClick: function (info) {
           const startDate = info.start;
           const dateStr = info.startStr.split("T")[0];
           const hour = startDate.getHours();
@@ -30,7 +31,7 @@ function renderCalendarPage() {
           openEventPrompt(dateStr, calendar, hour, minute);
         },
 
-        dateClick: function (info) {
+        select: function (info) {
           const startDate = info.start;
           const dateStr = info.startStr.split("T")[0];
           const hour = startDate.getHours();
