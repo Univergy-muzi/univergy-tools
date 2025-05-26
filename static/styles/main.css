@@ -108,6 +108,11 @@ main.container {
   color: #000 !important;
 }
 
+.tool-section h3,
+.tool-section, p{
+  color: #000 !important;
+}
+
 .xml-tool-group h4,
 .xml-tool-group p,
 .xml-tool-group label,
