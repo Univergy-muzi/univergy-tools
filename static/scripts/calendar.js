@@ -14,6 +14,8 @@ function renderCalendarPage() {
         initialView: "dayGridMonth",
         locale: "ja",
         timeZone: "local",
+        height: "auto",  
+        expandRows: false,     // 또는 height: "auto"
         eventLongPressDelay: 0,
         selectLongPressDelay: 0,
         headerToolbar: {
@@ -22,6 +24,12 @@ function renderCalendarPage() {
           right: "today,dayGridMonth,timeGridWeek",
         },
         events: events,
+        views: {
+          timeGridWeek: {
+            slotMinTime: '08:00:00',  // 시작 시각
+            slotMaxTime: '21:00:00',  // 끝 시각(표시 제외)
+          },
+        },
 
         dateClick: function (info) {
           const dateObj = info.date || new Date();

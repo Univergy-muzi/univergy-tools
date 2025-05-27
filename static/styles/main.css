@@ -109,7 +109,7 @@ main.container {
 }
 
 .tool-section h3,
-.tool-section, p{
+.tool-section p{
   color: #001522 !important;
 }
 
@@ -137,11 +137,20 @@ footer {
 }
 
 /* ========== FullCalendar Customizations ========== */
-#calendar-container {
-  margin: auto;
-  margin-top: 0;
-  max-width: 100%;
-  height: 700px;
+
+/* 월간(dayGrid) 뷰에만 최소 높이 유지 */
+#calendar-container .fc-dayGridMonth-view,
+#calendar-container .fc-dayGridMonth-view > .fc-scroller-harness {
+  min-height: 60vh;
+}
+
+/* timeGrid(week/day) 뷰에는 강제 높이 제거 */
+#calendar-container .fc-timeGridWeek-view,
+#calendar-container .fc-timeGridDay-view,
+#calendar-container .fc-timeGridWeek-view > .fc-scroller-harness,
+#calendar-container .fc-timeGridDay-view  > .fc-scroller-harness {
+  min-height: 0 !important;
+  height: auto   !important;   /* 혹시 남아 있을 인라인 높이 무력화 */
 }
 
 .fc-toolbar-title {
@@ -181,16 +190,8 @@ footer {
   display: none;
 }
 
-/* all-day 영역 높이 줄이기 */
-.fc-timegrid .fc-daygrid-body {
-  min-height: 2.2em !important; /* 기본보다 작게 */
-}
-
-/* all-day 이벤트 높이도 줄이기 */
-.fc-timegrid-allday .fc-event {
-  padding: 1px 3px;
-  font-size: 0.75em;
-  line-height: 1.2;
+.fc-scroller-harness {
+  margin-bottom: 0 !important;
 }
 
 /* ========== Modal Base ========== */
