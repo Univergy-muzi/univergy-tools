@@ -151,10 +151,15 @@ footer {
   color: #001522;
 }
 
-.fc-col-header-cell-cushion {
-  font-size: 0.8rem !important;
-  padding: 0.25rem !important;
-  white-space: nowrap;
+/* 날짜/요일 줄바꿈 허용 + 가운데 정렬 */
+.fc .fc-col-header-cell-cushion {
+  display: block;
+  text-align: center;
+  white-space: normal !important;
+  word-break: break-word;
+  font-size: 0.75rem;
+  padding: 0.2rem !important;
+  line-height: 1.1;
 }
 
 .fc .fc-col-header-cell {
@@ -174,6 +179,18 @@ footer {
 /* 일정 상자 내부 여백 및 경계 처리 개선 */
 .fc-daygrid-event-dot {
   display: none;
+}
+
+/* all-day 영역 높이 줄이기 */
+.fc-timegrid .fc-daygrid-body {
+  min-height: 2.2em !important; /* 기본보다 작게 */
+}
+
+/* all-day 이벤트 높이도 줄이기 */
+.fc-timegrid-allday .fc-event {
+  padding: 1px 3px;
+  font-size: 0.75em;
+  line-height: 1.2;
 }
 
 /* ========== Modal Base ========== */
@@ -281,5 +298,11 @@ footer {
 
   .fc-daygrid-day-number {
     font-size: 0.75rem;
+  }
+
+  .fc .fc-col-header-cell-cushion {
+    font-size: 0.65rem !important;
+    padding: 0.15rem !important;
+    line-height: 1.05;
   }
 }
