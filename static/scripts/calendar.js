@@ -171,68 +171,63 @@ function renderCalendarPage() {
           };
         },
         eventDidMount: function (info) {
-          const tooltip = document.createElement('div');
-          tooltip.className = 'fc-event-custom-tooltip';
+          let tooltip;
 
-          const title = info.event.title || '(제목 없음)';
-          const desc = info.event.extendedProps.description || '(詳細内容なし)';
-          const start = info.event.start;
-          const end = info.event.end;
+          const createTooltip = (x, y) => {
+            // 기존 툴팁 제거
+            document.querySelectorAll('.fc-event-custom-tooltip').forEach(el => el.remove());
 
-          const formatTime = (d) => {
-            if (!d) return "";
-            const h = d.getHours().toString().padStart(2, "0");
-            const m = d.getMinutes().toString().padStart(2, "0");
-            return `${h}:${m}`;
-          };
+            tooltip = document.createElement('div');
+            tooltip.className = 'fc-event-custom-tooltip';
 
-          tooltip.innerHTML = `
-            <h4>${title}</h4>
-            <div class="tooltip-time">${start.toLocaleDateString()} ${formatTime(start)} ${end ? `～ ${formatTime(end)}` : ''}</div>
-            <p>${desc}</p>
-          `;
+            const title = info.event.title || '(제목 없음)';
+            const desc = info.event.extendedProps.description || '(詳細内容なし)';
+            const start = info.event.start;
+            const end = info.event.end;
 
-          document.body.appendChild(tooltip);
+            const formatTime = (d) => {
+              if (!d) return "";
+              const h = d.getHours().toString().padStart(2, "0");
+              const m = d.getMinutes().toString().padStart(2, "0");
+              return `${h}:${m}`;
+            };
 
-          const hideTooltip = () => {
-            tooltip.style.opacity = '0';
-          };
+            tooltip.innerHTML = `
+              <h4>${title}</h4>
+              <div class="tooltip-time">${start.toLocaleDateString()} ${formatTime(start)} ${end ? `～ ${formatTime(end)}` : ''}</div>
+              <p>${desc}</p>
+            `;
 
-          const showTooltip = (e) => {
-            tooltip.style.display = 'block';
-            tooltip.classList.remove('visible'); // 초기화
+            document.body.appendChild(tooltip);
 
             requestAnimationFrame(() => {
-              let top, left;
+              const tooltipWidth = tooltip.offsetWidth;
+              const tooltipHeight = tooltip.offsetHeight;
 
-              if (window.innerWidth <= 480) {
-                const screenHeight = window.innerHeight;
-                const tooltipHeight = tooltip.offsetHeight;
-                top = window.scrollY + (screenHeight / 2) - (tooltipHeight / 2) - 40;
-                left = (window.innerWidth - tooltip.offsetWidth) / 2;
-              } else {
-                const tooltipOffsetX = 10;
-                const tooltipOffsetY = 12;
-                top = e.pageY - tooltip.offsetHeight - tooltipOffsetY;
-                left = e.pageX + tooltipOffsetX;
-              }
+              const left = x - tooltipWidth / 2;
+              const top = y - tooltipHeight - 12;
 
-              tooltip.style.top = `${Math.max(top, 10)}px`;
               tooltip.style.left = `${Math.max(left, 10)}px`;
+              tooltip.style.top = `${Math.max(top, 10)}px`;
 
-              // ✅ 애니메이션 적용
-              requestAnimationFrame(() => {
-                tooltip.classList.add('visible');
-              });
+              tooltip.classList.add('visible');
             });
+          };
+
+          const hideTooltip = () => {
+            if (tooltip) {
+              tooltip.remove();
+              tooltip = null;
+            }
           };
 
           let pressTimer;
 
-          // 모바일 long press (500ms)
+          // 모바일 long press
           info.el.addEventListener('touchstart', (e) => {
             pressTimer = setTimeout(() => {
-              showTooltip(e.touches[0]);
+              const touch = e.touches[0];
+              createTooltip(touch.pageX, touch.pageY);
             }, 500);
           });
 
@@ -246,9 +241,11 @@ function renderCalendarPage() {
             hideTooltip();
           });
 
-          // PC hover 유지
+          // PC hover
           info.el.addEventListener('mouseenter', (e) => {
-            if (window.innerWidth > 480) showTooltip(e);
+            if (window.innerWidth > 480) {
+              createTooltip(e.pageX, e.pageY);
+            }
           });
 
           info.el.addEventListener('mouseleave', hideTooltip);
