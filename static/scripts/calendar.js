@@ -44,7 +44,7 @@ function renderCalendarPage() {
             return { html: `<b>${arg.event.title}</b>` };
           } else {
             return {
-              html: `<b>${arg.event.title}</b><br><i>${arg.event.extendedProps.description || ""}</i>`
+              html: `<b>${arg.event.title}</b>`
             };
           }
         },

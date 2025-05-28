@@ -190,6 +190,20 @@ footer {
   display: none;
 }
 
+/* 주간 보기 이벤트 스타일 오버라이드 */
+.fc-timegrid-event {
+  white-space: normal !important; /* 줄바꿈 허용 */
+  overflow-wrap: break-word;     /* 긴 단어 자동 줄바꿈 */
+  word-break: break-word;
+  font-size: 0.8em;              /* (선택) 조금 작은 글씨로 */
+  padding: 2px 4px;
+}
+
+/* 일정 상자 내부 여백 및 경계 처리 개선 */
+.fc-timegrid-event-dot {
+  display: none;
+}
+
 .fc-scroller-harness {
   margin-bottom: 0 !important;
 }
