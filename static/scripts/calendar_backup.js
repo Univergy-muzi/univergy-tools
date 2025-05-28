@@ -17,12 +17,19 @@ export function attachBackupControls(container, refreshCalendar) {
     `;
   container.after(panel);
 
-  document.getElementById("triggerUploadBtn").onclick = () => {
-    document.getElementById("uploadDbInput").click();
-    };
+  // ✅ panel 안에서 요소 찾기 (보다 안전)
+  const triggerBtn = panel.querySelector("#triggerUploadBtn");
+  const uploadInput = panel.querySelector("#uploadDbInput");
+  const downloadBtn = panel.querySelector("#downloadDbBtn");
 
-  // 다운로드 처리
-  document.getElementById("downloadDbBtn").onclick = () => {
+  if (!triggerBtn || !uploadInput || !downloadBtn) {
+    console.warn("❗️ DB 컨트롤 버튼 로딩 실패: 요소를 찾을 수 없습니다.");
+    return;
+  }
+
+  triggerBtn.onclick = () => uploadInput.click();
+
+  downloadBtn.onclick = () => {
     fetch("/api/events/download")
       .then(res => res.blob())
       .then(blob => {
@@ -38,11 +45,9 @@ export function attachBackupControls(container, refreshCalendar) {
       .catch(err => alert("ダウンロードに失敗しました: " + err.message));
   };
 
-  // 업로드 처리
-  document.getElementById("uploadDbInput").onchange = function () {
+  uploadInput.onchange = function () {
     const file = this.files[0];
     if (!file) return;
-
     if (!confirm("現在のデータベースを削除し、このファイルで上書きしますか？")) return;
 
     const formData = new FormData();
@@ -58,7 +63,7 @@ export function attachBackupControls(container, refreshCalendar) {
       })
       .then(() => {
         alert("アップロードが完了しました。カレンダーを再読み込みします。");
-        refreshCalendar(); // 콜백 호출하여 리로드
+        refreshCalendar();
       })
       .catch(err => alert("エラー: " + err.message));
   };

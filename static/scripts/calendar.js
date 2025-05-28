@@ -194,7 +194,9 @@ function renderCalendarPage() {
 
           document.body.appendChild(tooltip);
 
-          let pressTimer;
+          const hideTooltip = () => {
+            tooltip.style.opacity = '0';
+          };
 
           const showTooltip = (e) => {
               // 미리 보이지 않게 만든 뒤 위치 계산
@@ -204,16 +206,18 @@ function renderCalendarPage() {
             tooltip.style.left = '-9999px';
 
             requestAnimationFrame(() => {
-            const tooltipOffsetX = 10;
-            const tooltipOffsetY = 12;
-            const top = touch.pageY - tooltip.offsetHeight - tooltipOffsetY;
-            const left = touch.pageX + tooltipOffsetX;
+              const tooltipOffsetX = 10;
+              const tooltipOffsetY = 12;
+              const top = e.pageY - tooltip.offsetHeight - tooltipOffsetY;
+              const left = e.pageX + tooltipOffsetX;
 
-            tooltip.style.top = `${Math.max(top, 10)}px`; // 화면 위로 안 벗어나게
-            tooltip.style.left = `${Math.max(left, 10)}px`;
-            tooltip.style.opacity = '1';
+              tooltip.style.top = `${Math.max(top, 10)}px`; // 화면 위로 안 벗어나게
+              tooltip.style.left = `${Math.max(left, 10)}px`;
+              tooltip.style.opacity = '1';
             });
           };
+
+          let pressTimer;
 
           // 모바일 long press (500ms)
           info.el.addEventListener('touchstart', (e) => {
