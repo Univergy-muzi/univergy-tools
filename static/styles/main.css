@@ -31,6 +31,8 @@ main.container {
   justify-content: center;
   align-items: center;
   margin: 1rem 0 0.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
 }
 
 .logo-link {
@@ -197,6 +199,11 @@ footer {
   word-break: break-word;
   font-size: 0.8em;              /* (선택) 조금 작은 글씨로 */
   padding: 2px 4px;
+  height: auto !important;        /* ✅ 자동 높이 적용 */
+  line-height: 1.2;               /* ✅ 줄바꿈 시 간격 조정 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* 일정 상자 내부 여백 및 경계 처리 개선 */
@@ -206,6 +213,51 @@ footer {
 
 .fc-scroller-harness {
   margin-bottom: 0 !important;
+}
+
+.fc-v-event .fc-event-main {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.fc-event-custom-tooltip {
+  position: absolute;
+  z-index: 1000;
+  background-color: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  max-width: 240px;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  line-height: 1.4;
+}
+
+.fc-event-custom-tooltip .tooltip-time {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.fc-event-custom-tooltip h4 {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  color: #f2f2f2;
+  font-weight: bold;
+}
+
+.fc-event-custom-tooltip p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #ddd;
 }
 
 /* ========== Modal Base ========== */
@@ -251,8 +303,7 @@ footer {
 /* ========== Responsive ========== */
 @media (max-width: 480px) {
   .logo-centered {
-    max-width: 220px;
-    margin-bottom: 0.5rem;
+    max-width: 300px;
   }
 
   .nav-bar {
@@ -319,5 +370,11 @@ footer {
     font-size: 0.65rem !important;
     padding: 0.15rem !important;
     line-height: 1.05;
+  }
+
+  .fc-event-custom-tooltip {
+    font-size: 0.85rem;
+    max-width: 180px;
+    padding: 8px 10px;
   }
 }

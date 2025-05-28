@@ -170,6 +170,46 @@ function renderCalendarPage() {
             };
           };
         },
+        eventDidMount: function (info) {
+          const tooltip = document.createElement('div');
+          tooltip.className = 'fc-event-custom-tooltip';
+
+          const title = info.event.title || '(제목 없음)';
+          const start = info.event.start;
+          const end = info.event.end;
+          const desc = info.event.extendedProps.description || '(詳細内容なし)';
+
+          const formatTime = (d) => {
+            if (!d) return "";
+            const h = d.getHours().toString().padStart(2, "0");
+            const m = d.getMinutes().toString().padStart(2, "0");
+            return `${h}:${m}`;
+            };
+
+          tooltip.innerHTML = `
+            <h4>${title}</h4>
+            <div class="tooltip-time">${start.toLocaleDateString()} ${formatTime(start)} ${end ? `～ ${formatTime(end)}` : ''}</div>
+            <p>${desc}</p>
+          `;
+
+
+          document.body.appendChild(tooltip);
+
+          info.el.addEventListener('mouseenter', (e) => {
+            tooltip.style.opacity = '1';
+            tooltip.style.top = e.pageY + 12 + 'px';
+            tooltip.style.left = e.pageX + 12 + 'px';
+          });
+
+          info.el.addEventListener('mousemove', (e) => {
+            tooltip.style.top = e.pageY + 12 + 'px';
+            tooltip.style.left = e.pageX + 12 + 'px';
+          });
+
+          info.el.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = '0';
+          });
+        },
       });
 
       calendar.render();
