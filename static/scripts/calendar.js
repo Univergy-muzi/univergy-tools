@@ -209,7 +209,7 @@ function renderCalendarPage() {
 
               if (window.innerWidth <= 480) {
                 // ✅ 모바일: 스크롤 포함하여 상단 중앙 위치
-                top = window.scrollY + 80;
+                top = window.scrollY + 15;
                 left = (window.innerWidth - tooltip.offsetWidth) / 2;
               } else {
                 // ✅ 데스크탑: 마우스 기준
