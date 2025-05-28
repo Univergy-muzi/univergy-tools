@@ -204,8 +204,11 @@ function renderCalendarPage() {
               const tooltipWidth = tooltip.offsetWidth;
               const tooltipHeight = tooltip.offsetHeight;
 
+              const isMobile = window.innerWidth <= 480;
+              const verticalOffset = isMobile ? 36 : 12;
+
               const left = x - tooltipWidth / 2;
-              const top = y - tooltipHeight - 12;
+              const top = y - tooltipHeight - verticalOffset;
 
               tooltip.style.left = `${Math.max(left, 10)}px`;
               tooltip.style.top = `${Math.max(top, 10)}px`;
