@@ -200,19 +200,17 @@ function renderCalendarPage() {
 
           const showTooltip = (e) => {
             tooltip.style.display = 'block';
-            tooltip.style.opacity = '0';
-            tooltip.style.top = '-9999px';
-            tooltip.style.left = '-9999px';
+            tooltip.classList.remove('visible'); // 초기화
 
             requestAnimationFrame(() => {
               let top, left;
 
               if (window.innerWidth <= 480) {
-                // ✅ 모바일: 스크롤 포함하여 상단 중앙 위치
-                top = window.scrollY -220;
+                const screenHeight = window.innerHeight;
+                const tooltipHeight = tooltip.offsetHeight;
+                top = window.scrollY + (screenHeight / 2) - (tooltipHeight / 2) - 40;
                 left = (window.innerWidth - tooltip.offsetWidth) / 2;
               } else {
-                // ✅ 데스크탑: 마우스 기준
                 const tooltipOffsetX = 10;
                 const tooltipOffsetY = 12;
                 top = e.pageY - tooltip.offsetHeight - tooltipOffsetY;
@@ -221,7 +219,11 @@ function renderCalendarPage() {
 
               tooltip.style.top = `${Math.max(top, 10)}px`;
               tooltip.style.left = `${Math.max(left, 10)}px`;
-              tooltip.style.opacity = '1';
+
+              // ✅ 애니메이션 적용
+              requestAnimationFrame(() => {
+                tooltip.classList.add('visible');
+              });
             });
           };
 

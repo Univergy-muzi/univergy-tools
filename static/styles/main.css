@@ -260,6 +260,41 @@ footer {
   color: #ddd;
 }
 
+.fc-event-custom-tooltip {
+  position: absolute;
+  z-index: 1000;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  max-width: 260px;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.fc-event-custom-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fc-event-custom-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
 /* ========== Modal Base ========== */
 .modal-wrapper {
   position: fixed;
