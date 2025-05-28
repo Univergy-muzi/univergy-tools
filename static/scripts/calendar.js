@@ -199,19 +199,27 @@ function renderCalendarPage() {
           };
 
           const showTooltip = (e) => {
-              // 미리 보이지 않게 만든 뒤 위치 계산
             tooltip.style.display = 'block';
             tooltip.style.opacity = '0';
             tooltip.style.top = '-9999px';
             tooltip.style.left = '-9999px';
 
             requestAnimationFrame(() => {
-              const tooltipOffsetX = 10;
-              const tooltipOffsetY = 12;
-              const top = e.pageY - tooltip.offsetHeight - tooltipOffsetY;
-              const left = e.pageX + tooltipOffsetX;
+              let top, left;
 
-              tooltip.style.top = `${Math.max(top, 10)}px`; // 화면 위로 안 벗어나게
+              if (window.innerWidth <= 480) {
+                // ✅ 모바일: 스크롤 포함하여 상단 중앙 위치
+                top = window.scrollY + 80;
+                left = (window.innerWidth - tooltip.offsetWidth) / 2;
+              } else {
+                // ✅ 데스크탑: 마우스 기준
+                const tooltipOffsetX = 10;
+                const tooltipOffsetY = 12;
+                top = e.pageY - tooltip.offsetHeight - tooltipOffsetY;
+                left = e.pageX + tooltipOffsetX;
+              }
+
+              tooltip.style.top = `${Math.max(top, 10)}px`;
               tooltip.style.left = `${Math.max(left, 10)}px`;
               tooltip.style.opacity = '1';
             });
