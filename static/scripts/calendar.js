@@ -175,16 +175,16 @@ function renderCalendarPage() {
           tooltip.className = 'fc-event-custom-tooltip';
 
           const title = info.event.title || '(제목 없음)';
+          const desc = info.event.extendedProps.description || '(詳細内容なし)';
           const start = info.event.start;
           const end = info.event.end;
-          const desc = info.event.extendedProps.description || '(詳細内容なし)';
 
           const formatTime = (d) => {
             if (!d) return "";
             const h = d.getHours().toString().padStart(2, "0");
             const m = d.getMinutes().toString().padStart(2, "0");
             return `${h}:${m}`;
-            };
+          };
 
           tooltip.innerHTML = `
             <h4>${title}</h4>
@@ -192,23 +192,43 @@ function renderCalendarPage() {
             <p>${desc}</p>
           `;
 
-
           document.body.appendChild(tooltip);
 
-          info.el.addEventListener('mouseenter', (e) => {
+          let pressTimer;
+
+          const showTooltip = (e) => {
             tooltip.style.opacity = '1';
             tooltip.style.top = e.pageY + 12 + 'px';
             tooltip.style.left = e.pageX + 12 + 'px';
-          });
+          };
 
-          info.el.addEventListener('mousemove', (e) => {
-            tooltip.style.top = e.pageY + 12 + 'px';
-            tooltip.style.left = e.pageX + 12 + 'px';
-          });
-
-          info.el.addEventListener('mouseleave', () => {
+          const hideTooltip = () => {
             tooltip.style.opacity = '0';
+          };
+
+          // 모바일 long press (500ms)
+          info.el.addEventListener('touchstart', (e) => {
+            pressTimer = setTimeout(() => {
+              showTooltip(e.touches[0]);
+            }, 500);
           });
+
+          info.el.addEventListener('touchend', () => {
+            clearTimeout(pressTimer);
+            hideTooltip();
+          });
+
+          info.el.addEventListener('touchmove', () => {
+            clearTimeout(pressTimer);
+            hideTooltip();
+          });
+
+          // PC hover 유지
+          info.el.addEventListener('mouseenter', (e) => {
+            if (window.innerWidth > 480) showTooltip(e);
+          });
+
+          info.el.addEventListener('mouseleave', hideTooltip);
         },
       });
 
