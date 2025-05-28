@@ -197,13 +197,22 @@ function renderCalendarPage() {
           let pressTimer;
 
           const showTooltip = (e) => {
-            tooltip.style.opacity = '1';
-            tooltip.style.top = e.pageY + 12 + 'px';
-            tooltip.style.left = e.pageX + 12 + 'px';
-          };
-
-          const hideTooltip = () => {
+              // 미리 보이지 않게 만든 뒤 위치 계산
+            tooltip.style.display = 'block';
             tooltip.style.opacity = '0';
+            tooltip.style.top = '-9999px';
+            tooltip.style.left = '-9999px';
+
+            requestAnimationFrame(() => {
+            const tooltipOffsetX = 10;
+            const tooltipOffsetY = 12;
+            const top = touch.pageY - tooltip.offsetHeight - tooltipOffsetY;
+            const left = touch.pageX + tooltipOffsetX;
+
+            tooltip.style.top = `${Math.max(top, 10)}px`; // 화면 위로 안 벗어나게
+            tooltip.style.left = `${Math.max(left, 10)}px`;
+            tooltip.style.opacity = '1';
+            });
           };
 
           // 모바일 long press (500ms)
