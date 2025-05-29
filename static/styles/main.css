@@ -339,9 +339,16 @@ footer {
 .fc .fc-scrollgrid-section,
 .fc .fc-scrollgrid-section td,
 .fc .fc-scrollgrid-section table {
-  height: 10px !important;
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.fc .fc-timegrid-col.fc-day-today {
+  background: linear-gradient(to bottom, #fff9d1 0%, #fffef5 100%) !important;
+}
+
+.fc .fc-scrollgrid-section-footer > *, .fc .fc-scrollgrid-section-header > * {
+    border-bottom-width: 2px;
 }
 
 .fc .fc-button {
