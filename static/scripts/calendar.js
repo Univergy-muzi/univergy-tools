@@ -14,7 +14,8 @@ function renderCalendarPage() {
         initialView: "dayGridMonth",
         locale: "ja",
         timeZone: "local",
-        height: "auto",  
+        height: null,  
+        contentHeight: 'auto', 
         expandRows: false,     // 또는 height: "auto"
         eventLongPressDelay: 0,
         selectLongPressDelay: 0,
@@ -204,7 +205,7 @@ function renderCalendarPage() {
               const tooltipWidth = tooltip.offsetWidth;
               const tooltipHeight = tooltip.offsetHeight;
 
-              const isMobile = window.innerWidth <= 480;
+              const isMobile = window.innerWidth <= 550;
               const verticalOffset = isMobile ? 36 : 12;
 
               const left = x - tooltipWidth / 2;
@@ -246,7 +247,7 @@ function renderCalendarPage() {
 
           // PC hover
           info.el.addEventListener('mouseenter', (e) => {
-            if (window.innerWidth > 480) {
+            if (window.innerWidth > 550) {
               createTooltip(e.pageX, e.pageY);
             }
           });
