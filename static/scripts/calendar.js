@@ -14,9 +14,9 @@ function renderCalendarPage() {
         initialView: "dayGridMonth",
         locale: "ja",
         timeZone: "local",
-        height: null,  
-        contentHeight: 'auto', 
-        expandRows: false,     // 또는 height: "auto"
+        height: null,
+        contentHeight: 'auto',
+        expandRows: false,
         eventLongPressDelay: 0,
         selectLongPressDelay: 0,
         headerToolbar: {
@@ -27,27 +27,37 @@ function renderCalendarPage() {
         events: events,
         views: {
           timeGridWeek: {
-            slotMinTime: '08:00:00',  // 시작 시각
-            slotMaxTime: '21:00:00',  // 끝 시각(표시 제외)
+            slotMinTime: '08:00:00',
+            slotMaxTime: '21:00:00',
           },
         },
 
         dateClick: function (info) {
           const dateObj = info.date || new Date();
-          const dateStr = formatDateLocal(dateObj); // ✅ 현지 기준 날짜
+          const dateStr = formatDateLocal(dateObj);
           const hour = dateObj.getHours();
           const minute = dateObj.getMinutes();
           openEventPrompt(dateStr, calendar, hour, minute);
         },
 
         eventContent: function (arg) {
-          if (arg.view.type === "dayGridMonth") {
-            return { html: `<b>${arg.event.title}</b>` };
-          } else {
-            return {
-              html: `<b>${arg.event.title}</b>`
-            };
-          }
+          const event = arg.event;
+          const isAllDay = event.allDay;
+          const className = isAllDay ? 'fc-event-allday' : 'fc-event-timed';
+          const isDayGrid = arg.view.type === 'dayGridMonth';
+
+          const container = document.createElement('div');
+          container.className = className;
+          container.style.height = '100%';
+          container.style.boxSizing = 'border-box';
+          if (isDayGrid) container.style.width = '100%';
+          const contentSpan = document.createElement('span');
+          contentSpan.className = 'event-title-wrapper';
+          contentSpan.textContent = event.title;
+
+          container.appendChild(contentSpan);
+
+          return { domNodes: [container] };
         },
 
         eventClick: function (info) {
@@ -60,7 +70,6 @@ function renderCalendarPage() {
             ? "終日"
             : `${event.startStr.slice(11, 16)} ～ ${event.endStr?.slice(11, 16) || ""}`;
           document.getElementById("detailDescription").innerText = event.extendedProps.description || "(なし)";
-
           modal.style.display = "block";
 
           document.getElementById("closeDetailBtn").onclick = () => {
@@ -171,17 +180,17 @@ function renderCalendarPage() {
             };
           };
         },
+
         eventDidMount: function (info) {
           let tooltip;
 
           const createTooltip = (x, y) => {
-            // 기존 툴팁 제거
             document.querySelectorAll('.fc-event-custom-tooltip').forEach(el => el.remove());
 
             tooltip = document.createElement('div');
             tooltip.className = 'fc-event-custom-tooltip';
 
-            const title = info.event.title || '(제목 없음)';
+            const title = info.event.title || '(題名なし)';
             const desc = info.event.extendedProps.description || '(詳細内容なし)';
             const start = info.event.start;
             const end = info.event.end;
@@ -204,16 +213,13 @@ function renderCalendarPage() {
             requestAnimationFrame(() => {
               const tooltipWidth = tooltip.offsetWidth;
               const tooltipHeight = tooltip.offsetHeight;
-
               const isMobile = window.innerWidth <= 550;
               const verticalOffset = isMobile ? 36 : 12;
-
               const left = x - tooltipWidth / 2;
               const top = y - tooltipHeight - verticalOffset;
 
               tooltip.style.left = `${Math.max(left, 10)}px`;
               tooltip.style.top = `${Math.max(top, 10)}px`;
-
               tooltip.classList.add('visible');
             });
           };
@@ -227,7 +233,6 @@ function renderCalendarPage() {
 
           let pressTimer;
 
-          // 모바일 long press
           info.el.addEventListener('touchstart', (e) => {
             pressTimer = setTimeout(() => {
               const touch = e.touches[0];
@@ -245,7 +250,6 @@ function renderCalendarPage() {
             hideTooltip();
           });
 
-          // PC hover
           info.el.addEventListener('mouseenter', (e) => {
             if (window.innerWidth > 550) {
               createTooltip(e.pageX, e.pageY);
@@ -253,6 +257,20 @@ function renderCalendarPage() {
           });
 
           info.el.addEventListener('mouseleave', hideTooltip);
+
+          requestAnimationFrame(() => {
+            const containerEl = info.el.querySelector('.fc-event-allday, .fc-event-timed');
+            const textEl = containerEl?.querySelector('.event-title-wrapper');
+
+            if (containerEl && textEl) {
+              const lineHeight = parseFloat(getComputedStyle(textEl).lineHeight);
+              const visibleHeight = containerEl.clientHeight;
+              const maxLines = Math.floor(visibleHeight / lineHeight);
+
+              textEl.style.webkitLineClamp = maxLines;
+              textEl.style.maxHeight = `${lineHeight * maxLines}px`;
+            }
+          });
         },
       });
 
@@ -262,6 +280,7 @@ function renderCalendarPage() {
 }
 
 window.renderCalendarPage = renderCalendarPage;
+
 // ------------------ 프롬프트 오픈 추가 ------------------
 
 function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0) {
@@ -274,7 +293,6 @@ function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0) {
   const modal = document.getElementById("eventModal");
   modal.style.display = "block";
 
-  // ✅ 모달 열릴 때 스크롤 맨 위로 초기화
   const dialog = modal.querySelector("dialog");
   if (dialog) {
     dialog.scrollTop = 0;
@@ -347,7 +365,7 @@ function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0) {
 
 function formatDateLocal(dateObj) {
   const year = dateObj.getFullYear();
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 0-indexed
+  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
   const day = String(dateObj.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }

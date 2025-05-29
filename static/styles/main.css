@@ -140,21 +140,6 @@ footer {
 
 /* ========== FullCalendar Customizations ========== */
 
-/* 월간(dayGrid) 뷰에만 최소 높이 유지 */
-#calendar-container .fc-dayGridMonth-view,
-#calendar-container .fc-dayGridMonth-view > .fc-scroller-harness {
-  min-height: 60vh;
-}
-
-/* timeGrid(week/day) 뷰에는 강제 높이 제거 */
-#calendar-container .fc-timeGridWeek-view,
-#calendar-container .fc-timeGridDay-view,
-#calendar-container .fc-timeGridWeek-view > .fc-scroller-harness,
-#calendar-container .fc-timeGridDay-view  > .fc-scroller-harness {
-  min-height: 0 !important;
-  height: auto   !important;   /* 혹시 남아 있을 인라인 높이 무력화 */
-}
-
 .fc-toolbar-title {
   /* font-size: 2rem !important; */
   box-sizing: content-box !important;
@@ -179,37 +164,36 @@ footer {
   font-size: clamp(0.65rem, 2.5vw, 0.85rem);
 }
 
-/* 월간 보기 이벤트 스타일 오버라이드 */
-.fc-daygrid-event {
-  white-space: normal !important; /* 줄바꿈 허용 */
-  overflow-wrap: break-word;     /* 긴 단어 자동 줄바꿈 */
-  word-break: break-word;
-  font-size: 0.8em;              /* (선택) 조금 작은 글씨로 */
-  padding: 2px 4px;
-}
-
 /* 일정 상자 내부 여백 및 경계 처리 개선 */
 .fc-daygrid-event-dot {
   display: none;
 }
 
-/* 주간 보기 이벤트 스타일 오버라이드 */
-.fc-timegrid-event {
-  white-space: normal !important; /* 줄바꿈 허용 */
+/* 일정 상자 내부 여백 및 경계 처리 개선 */
+.fc-timegrid-event-dot {
+  display: none;
+}
+
+/* 월간 주간 보기 이벤트 스타일 오버라이드 */
+.fc-timegrid-event,
+.fc-daygrid-event {
+  white-space: nowrap;
   overflow-wrap: break-word;     /* 긴 단어 자동 줄바꿈 */
   word-break: break-word;
   font-size: 0.8em;              /* (선택) 조금 작은 글씨로 */
-  padding: 2px 4px;
+  padding: 0 !important;
   height: auto !important;        /* ✅ 자동 높이 적용 */
   line-height: 1.2;               /* ✅ 줄바꿈 시 간격 조정 */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: none !important;
+  border: none !important;
 }
 
-/* 일정 상자 내부 여백 및 경계 처리 개선 */
-.fc-timegrid-event-dot {
-  display: none;
+.fc-daygrid-event.fc-event-timed {
+  display: block !important;
+  width: 100% !important;
 }
 
 .fc-scroller-harness {
@@ -296,6 +280,92 @@ footer {
   border-color: #333 transparent transparent transparent;
 }
 
+.fc .fc-scrollgrid-section,
+.fc .fc-scrollgrid-section td,
+.fc .fc-scrollgrid-section table {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.fc .fc-timegrid-col.fc-day-today {
+  background: linear-gradient(to bottom, #fff9d1 0%, #fffef5 100%) !important;
+}
+
+.fc .fc-scrollgrid-section-footer > *, .fc .fc-scrollgrid-section-header > * {
+    border-bottom-width: 2px;
+}
+
+.fc .fc-button {
+    margin-top: px;
+    /* background-color: transparent; */
+    border: 1px solid transparent;
+    border-radius: 0.25em;
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 0.4em 0.3em;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;}
+
+.fc-event-allday,
+.fc-event-timed {
+  display: block;
+  padding: 2px 4px;
+  font-size: 1em;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow: hidden;         /* ✅ 넘치는 내용 감추기 */
+  text-overflow: ellipsis;  /* ✅ 말줄임 처리 */
+  font-weight: 500;
+}
+
+.fc-event-allday {
+  background-color: #fff6cc; /* 밝은 노랑 */
+  border-left: 4px solid #e4b400;
+  color: #333;
+}
+
+.fc-event-timed {
+  background-color: #cce5ff; /* 연한 파랑 */
+  border-left: 4px solid #1976d2;
+  color: #001b33;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* .fc-timeGridWeek-view .fc-event-timed {
+  white-space: normal !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+} */
+
+.fc-event-overflow {
+  white-space: nowrap;      /* ✅ 한 줄로 유지 */
+}
+
+.fc-timeGridWeek-view .fc-event-allday .event-title-wrapper {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fc-timeGridWeek-view .fc-event-timed .event-title-wrapper {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-height: 3.6em;
+  line-height: 1.2em;
+}
+
 /* ========== Modal Base ========== */
 .modal-wrapper {
   position: fixed;
@@ -335,35 +405,6 @@ footer {
   gap: 0.5rem;
   justify-content: center;
 }
-
-.fc .fc-scrollgrid-section,
-.fc .fc-scrollgrid-section td,
-.fc .fc-scrollgrid-section table {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.fc .fc-timegrid-col.fc-day-today {
-  background: linear-gradient(to bottom, #fff9d1 0%, #fffef5 100%) !important;
-}
-
-.fc .fc-scrollgrid-section-footer > *, .fc .fc-scrollgrid-section-header > * {
-    border-bottom-width: 2px;
-}
-
-.fc .fc-button {
-    margin-top: px;
-    /* background-color: transparent; */
-    border: 1px solid transparent;
-    border-radius: 0.25em;
-    display: inline-block;
-    font-size: 1.2em;
-    font-weight: 400;
-    line-height: 1.4;
-    padding: 0.4em 0.3em;
-    text-align: center;
-    user-select: none;
-    vertical-align: middle;}
 
 /* ========== Responsive ========== */
 @media (max-width: 550px) {
