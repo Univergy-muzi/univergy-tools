@@ -1,42 +1,24 @@
-<!-- 예: static/templates/home.html -->
-<section class="explain-section">
+<section class="explain-section" style="margin-top: 2rem;">
   <hgroup>
-    <h2>業務自動化ツールハブ</h2>
-    <h3>UNIVERGY株式会社 専用</h3>
+    <h2>ようこそ、UNIVERGYツールハブへ</h2>
+    <h3>業務効率化・自動化を実現する社内ポータル</h3>
   </hgroup>
   <p>
-    このサイトは、UNIVERGY株式会社の社員が日常的に使用する分析ツールやファイル処理ツールを統合的に提供いたします。
+    このプラットフォームでは、日常業務をサポートする各種の内部ツール・分析機能を統合的に提供します。<br/>
+    最新のツール、アップデート情報、改善フィードバックなどは下記で随時ご案内しています。
   </p>
 </section>
 
-<section id="tools" class="tool-section">
-  <h3>利用可能なツール</h3>
-  <p>以下は現在使用可能な主な業務ツールの一覧です。随時更新予定です：</p>
-
-  <div class="xml-tool-group" style="margin-bottom: 2rem;">
-    <h4>ㅤ①ㅤ確定使用量XML分析</h4>
-    <form method="POST" action="/kakutei" enctype="multipart/form-data">
-      <label class="custom-btn">
-        フォルダを選択
-        <input type="file" id="fileInput" name="files" webkitdirectory directory multiple accept=".xml" />
-      </label>
-      <div id="fileListContainer" style="margin-top:1rem;">
-        <p class="file-list-label">選択されたXMLファイル:</p>
-        <ul id="fileList"></ul>
-      </div>
-      <button type="submit">✅ 確定使用量XML分析実行</button>
-    </form>
-  </div>
-
-  <hr />
-
-  <div class="xml-tool-group" style="margin-bottom: 2rem;">
-    <h4>ㅤ②ㅤTEST</h4>
-    <p><a href="/run-csv-tool" class="custom-btn" target="_blank">📂 TESTボタン</a></p>
-  </div>
+<section class="tool-section">
+  <h3>🧰 よく使われる機能</h3>
+  <ul>
+    <li>✅ <strong>確定使用量XML分析</strong> - 需要家ごと、コマごとの使用量整理</li>
+    <li>📅 <strong>カレンダー連携</strong> - 業務予定の見える化</li>
+  </ul>
 </section>
 
 <section class="tool-section">
-  <h3>継続的な改善</h3>
-  <p>すべてのツールは利便性向上のために今後も追加・改善されていきます。必要な機能やご要望があれば、お気軽にお問い合わせください。</p>
+  <h3>📢 お知らせ</h3>
+  <p>最新アップデート: <strong>5月30日</strong> に サイトのデザインが更新されました。</p>
+  <p>フィードバックはこちらから: <a href="mailto:j.lee@univergy.com">j.lee@univergy.com</a></p>
 </section>
