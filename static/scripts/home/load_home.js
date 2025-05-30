@@ -1,4 +1,4 @@
-function loadHomeTemplate() {
+export function loadHomeTemplate() {
   const main = document.querySelector("main");
 
   fetch("/static/fragments/home.html")

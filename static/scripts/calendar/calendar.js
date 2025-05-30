@@ -1,5 +1,5 @@
 // calendar.js
-import { attachBackupControls } from "./calendar_backup.js";
+import { attachBackupControls } from "../db/calendar_backup.js";
 
 // ------------------ 1. 분리된 렌더링 함수 ------------------
 function renderCalendarPage() {

@@ -1,0 +1,83 @@
+@media (max-width: 550px) {
+  .logo-centered {
+    max-width: 300px;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav-buttons {
+    justify-content: center;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .nav-button {
+    flex: 1 1 30%;
+    max-width: 140px;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+    height: auto;
+  }
+
+  .modal-wrapper {
+    align-items: flex-start;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+  }
+
+  .modal-dialog {
+    width: 94vw;
+    padding: 1rem 0.8rem;
+    max-height: none;
+    height: auto;
+    overflow: visible;
+    color: var(--modal-text-color-mobile);
+    border-radius: 10px;
+  }
+
+  .modal-dialog input,
+  .modal-dialog textarea,
+  .modal-dialog select {
+    font-size: 16px !important;
+    margin-bottom: 0.6rem;
+  }
+
+  .modal-dialog footer {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .modal-index p {
+    color: #f7fbff !important;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.1rem !important;
+  }
+
+  .fc-daygrid-day-number {
+    font-size: 0.75rem;
+  }
+
+  .fc .fc-col-header-cell-cushion {
+    font-size: 0.65rem !important;
+    padding: 0.15rem !important;
+    line-height: 1.05;
+  }
+
+  .fc-event-custom-tooltip {
+    font-size: 0.85rem;
+    max-width: 180px;
+    padding: 8px 10px;
+  }
+
+  .fc .fc-button {
+    font-size: 1em;
+    line-height: 1.2;
+    padding: 0.4em 0.2em;
+  }
+}

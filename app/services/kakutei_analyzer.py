@@ -1,11 +1,11 @@
-def analyze_kakutei_xml(xml_file_list):
-  import xmltodict
-  import pandas as pd
-  import datetime as dt
-  import xml.etree.ElementTree as ET
-  from openpyxl import Workbook
-  from io import BytesIO
+import xmltodict
+import pandas as pd
+import datetime as dt
+import xml.etree.ElementTree as ET
+from openpyxl import Workbook
+from io import BytesIO
 
+def analyze_kakutei_xml(xml_file_list):
   wb = Workbook()
   ws = wb.active
   ws.title = 'DATA'

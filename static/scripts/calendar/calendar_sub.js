@@ -1,3 +1,5 @@
+import { loadHomeTemplate } from '../home/load_home.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   // 처음 로딩 시, 해시 기반으로 라우팅 처리
   handleHashChange();

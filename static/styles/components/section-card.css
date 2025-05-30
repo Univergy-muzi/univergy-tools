@@ -1,0 +1,20 @@
+.tool-section {
+  margin-top: 0.4rem;
+  padding: 1.5rem;
+  background-color: var(--section-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: #001522 !important;
+}
+
+.tool-section h3,
+.tool-section p,
+.xml-tool-group h4,
+.xml-tool-group p,
+.xml-tool-group label,
+.xml-tool-group span,
+.explain-section h2,
+.explain-section h3,
+.explain-section p {
+  color: #001522 !important;
+}

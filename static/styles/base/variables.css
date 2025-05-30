@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #1976d2;
+  --primary-hover: #1459a0;
+  --danger-color: #d32f2f;
+  --light-gray: #f5f5f5;
+  --border-color: #ccc;
+  --border-radius: 8px;
+  --transition-speed: 0.2s;
+  --section-bg: #fcfcfc;
+  --modal-text-color: #001520;
+  --modal-text-color-mobile: #eff9fc;
+}

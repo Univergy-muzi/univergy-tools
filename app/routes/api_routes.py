@@ -1,57 +1,17 @@
-from flask import Flask, send_from_directory, request, send_file, jsonify, abort
-from app import func_list
-import os, sqlite3
+from flask import Blueprint, jsonify, request, abort, send_file
+from app.services.database import init_db, export_events_to_json, import_events_from_json
+import sqlite3, os
+from io import BytesIO
 
-app = Flask(__name__, static_folder='static')
-
+api = Blueprint("api", __name__)
 DB_FILE = "schedule.db"
-func_list.init_db(DB_FILE)
+init_db(DB_FILE)
 
-@app.route("/")
-def homepage():
-    return open("index.html", encoding="utf-8").read()
-
-
-@app.route("/static/<path:filename>")
-def serve_static(filename):
-    return send_from_directory("static", filename)
-
-
-@app.route('/kakutei', methods=['POST'])
-def kakutei():
-    from def_kakutei import analyze_kakutei_xml
-    files = request.files.getlist('files')
-    xml_file_list = []
-    analyze_file_list = []
-
-    for file in files:
-        filename = file.filename
-        if filename.lower().endswith('.xml'):
-            xml_file_list.append(filename)
-            analyze_file_list.append(file)
-            # 파일 저장하려면 여기에 추가 가능:
-            # file.save(os.path.join('uploads', filename))
-
-    excel_stream = analyze_kakutei_xml(analyze_file_list)
-
-    return send_file(
-        excel_stream,
-        as_attachment=True,
-        download_name="analyze_data.xlsx",
-        mimetype=
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-
-
-@app.route("/run-csv-tool")
-def run_csv_tool():
-    # 여기 나중에 CSV 처리 코드 추가
-    return "✅ TESTを処理しました！"
-
-@app.route("/ping")
+@api.route("/ping")
 def ping():
     return "pong", 200
 
-@app.route("/api/events", methods=["GET", "POST", "DELETE"])
+@api.route("/api/events", methods=["GET", "POST", "DELETE"])
 def handle_events():
     if request.method == "GET":
         with sqlite3.connect(DB_FILE) as conn:
@@ -84,31 +44,20 @@ def handle_events():
         with sqlite3.connect(DB_FILE) as conn:
             conn.execute("DELETE FROM events WHERE id = ?", (event_id,))
         return jsonify({"status": "deleted"}), 200
+    ...
 
-# 서버에서 JSON 다운로드
-@app.route("/api/events/download")
+@api.route("/api/events/download")
 def download_events():
-    func_list.export_events_to_json(DB_FILE)
+    export_events_to_json(DB_FILE)
     path = "data/events.json"
     if not os.path.exists(path):
         abort(404, description="JSONファイルが見つかりませんでした。")
-
-    # 파일을 읽어서 메모리에 올림
-    from io import BytesIO
     with open(path, "rb") as f:
         data = BytesIO(f.read())
+    os.remove(path)
+    return send_file(data, as_attachment=True, download_name="calendar_events_backup.json", mimetype="application/json")
 
-    os.remove(path)  # ✅ 다운로드 직후 파일 삭제
-
-    return send_file(
-        data,
-        as_attachment=True,
-        download_name="calendar_events_backup.json",
-        mimetype="application/json"
-    )
-
-# 서버로 JSON 업로드
-@app.route("/api/events/upload", methods=["POST"])
+@api.route("/api/events/upload", methods=["POST"])
 def upload_events():
     file = request.files["file"]
     if file and file.filename.endswith(".json"):
@@ -117,13 +66,9 @@ def upload_events():
         file.save(file_path)
 
         try:
-            func_list.import_events_from_json(DB_FILE, file_path)
+            import_events_from_json(DB_FILE, file_path)
             os.remove(file_path)  # ✅ 업로드 처리 후 파일 삭제
             return jsonify({"status": "success"})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     return jsonify({"error": "invalid file"}), 400
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 3000))
-    app.run(host="0.0.0.0", port=port)
