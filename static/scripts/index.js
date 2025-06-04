@@ -4,22 +4,17 @@ import './db/calendar_backup.js';
 import './modal/modal_loader.js';
 import './preview/file-preview.js';
 
-import { loadHomeTemplate } from './page/load_home.js';
-
-
 window.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.nav-button[href="/"]').addEventListener('click', (e) => {
+  // 버튼 클릭은 해시 변경만 트리거
+  document.querySelector('.nav-button[href="#tools"]')?.addEventListener('click', (e) => {
     e.preventDefault();
-    location.hash = "/";
+    location.hash = '#tools';
   });
 
-  document.querySelector('.nav-button[href="#tools"]').addEventListener('click', (e) => {
+  document.getElementById('calendarBtn')?.addEventListener('click', (e) => {
     e.preventDefault();
-    location.hash = "#tools";
+    location.hash = '#calendar';
   });
 
-  document.getElementById('calendarBtn').addEventListener('click', (e) => {
-    e.preventDefault();
-    location.hash = "#calendar";
-  });
+  // 홈 버튼은 기본 a href="#home" 으로 충분 — 이벤트 바인딩 불필요
 });
