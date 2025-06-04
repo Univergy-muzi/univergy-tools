@@ -1,0 +1,57 @@
+<!-- 📅 일정 추가 모달 -->
+<div id="eventModal" class="modal-wrapper" style="display: none;">
+  <dialog class="modal-dialog" open>
+    <article>
+      <header style="margin-bottom: 1rem;">
+        <h4 style="margin: 0.25rem 0; font-size: 1.25rem;">予定を追加</h4>
+      </header>
+
+      <form onsubmit="return false;">
+        <!-- 제목 -->
+        <input id="eventTitle" type="text" placeholder="予定のタイトル" aria-label="タイトル" required style="margin-bottom: 1.25rem;" />
+
+        <!-- 날짜 및 시각 -->
+        <div class="grid" style="grid-template-columns: 2fr 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+          <input id="eventDate" type="date" aria-label="日付" required />
+          <input id="startTime" type="text" placeholder="開始時刻 (0900)" aria-label="開始時刻" />
+          <input id="endTime" type="text" placeholder="終了時刻 (1000)" aria-label="終了時刻" />
+        </div>
+
+        <!-- 설명 -->
+        <textarea id="eventDesc" placeholder="予定の詳細を入力" aria-label="詳細" rows="5" style="width: 100%; resize: vertical;"></textarea>
+
+        <!-- 버튼 -->
+        <footer class="button-group" style="margin-top: 1rem;">
+          <button type="button" id="cancelEventBtn" class="secondary" style="margin-top: 0.1rem;">キャンセル</button>
+          <button type="button" id="saveEventBtn" class="contrast" style="margin-top: 0.1rem;">保存</button>
+        </footer>
+      </form>
+    </article>
+  </dialog>
+</div>
+
+<!-- 📖 일정 상세 보기 모달 -->
+<div id="eventDetailModal" class="modal-wrapper" style="display: none;">
+  <dialog class="modal-dialog" open>
+    <article>
+      <!-- 타이틀 -->
+      <header style="margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--pico-muted-border-color);">
+        <h4 id="detailTitle" style="margin: 0; font-size: 1.25rem;">予定詳細</h4>
+      </header>
+
+      <!-- 본문 정보 -->
+      <div class="modal-index" style="line-height: 1.8;">
+        <p><strong>日付:</strong> <span id="detailDate"></span></p>
+        <p><strong>時間:</strong> <span id="detailTime"></span></p>
+        <p><strong>詳細:</strong><br><span id="detailDescription"></span></p>
+      </div>
+
+      <!-- 버튼 그룹 -->
+      <footer class="button-group" style="margin-top: 1rem;">
+        <button type="button" id="editEventBtn" class="contrast" style="min-width: 140px; margin-top: 0.1rem;">✏️ 編集</button>
+        <button type="button" id="deleteEventBtn" class="secondary" style="min-width: 140px; margin-top: 0.1rem;">🗑️ 削除</button>
+        <button type="button" id="closeDetailBtn" style="min-width: 140px; background-color: var(--pico-primary); color: rgb(135, 200, 243); margin-top: 0.1rem;">閉じる</button>
+      </footer>
+    </article>
+  </dialog>
+</div>

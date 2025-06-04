@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UNIVERGY株式会社 業務ツールハブ</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="/static/styles/main.css" />
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="logo-wrapper">
+      <a href="/" class="logo-link">
+        <img src="/static/logo.png" alt="UNIVERGY株式会社ロゴ" class="logo-centered" />
+      </a>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav-bar">
+    <div class="nav-left">
+      <strong>UNIVERGY株式会社</strong>
+    </div>
+    <div class="nav-buttons">
+      <a href="/" class="nav-button">ホーム</a>
+      <a href="#tools" class="nav-button">ツール一覧</a>
+      <a href="#calendar" id="calendarBtn" class="nav-button">📅 カレンダー</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="container" id="mainContainer">
+    <!-- JavaScriptでコンテンツ挿入 -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="container">
+    <small><a href="#">プライバシーポリシー</a> • <a href="#">お問い合わせ</a></small>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+  <script type="module" src="/static/scripts/index.js"></script>
+
+  <div id="modalContainer"></div>
+</body>
+</html>

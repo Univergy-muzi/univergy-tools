@@ -1,0 +1,18 @@
+<section id="tools" class="tool-section" style="margin-top: 2rem;">
+  <h2>利用可能な業務ツール</h2>
+  <div class="xml-tool-group" style="margin-bottom: 2rem;">
+    <h4>① 確定使用量XML分析</h4>
+    <form method="POST" action="/kakutei" enctype="multipart/form-data">
+      <label class="custom-btn">
+        フォルダを選択
+        <input type="file" name="files" webkitdirectory directory multiple accept=".xml" />
+      </label>
+      <button type="submit">✅ XML分析実行</button>
+    </form>
+  </div>
+  <hr />
+  <div class="xml-tool-group">
+    <h4>② TEST</h4>
+    <a href="/run-csv-tool" class="custom-btn" target="_blank">📂 TEST実行</a>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0 0.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+.logo-link {
+  display: inline-block;
+  text-align: center;
+  transition: opacity var(--transition-speed);
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+}
+
+.logo-centered {
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+  height: auto;
+}
