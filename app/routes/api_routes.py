@@ -14,15 +14,19 @@ def ping():
 @api.route("/api/events", methods=["GET", "POST", "DELETE"])
 def handle_events():
     if request.method == "GET":
+        user_division = request.args.get("created_division")
+        query = "SELECT id, title, description, start, end, allDay, created_by FROM events WHERE created_division = ?"
         with sqlite3.connect(DB_FILE) as conn:
-            cursor = conn.execute("SELECT id, title, description, start, end, allDay FROM events")
+            cursor = conn.execute(query, (user_division,))
             events = [{
                 "id": row[0],
-                "title": row[1],
+                "title": row[1],  # 제목만!
+                "displayTitle": f"{row[6]}：{row[1]}",  # UI용 표시 제목
                 "description": row[2],
                 "start": row[3],
                 "end": row[4],
-                "allDay": bool(row[5])  # 1이면 True, 0이면 False
+                "allDay": bool(row[5]),
+                "created_by": row[6]  # tooltip에서 사용
             } for row in cursor]
         return jsonify(events)
 
@@ -30,8 +34,8 @@ def handle_events():
         data = request.get_json()
         with sqlite3.connect(DB_FILE) as conn:
             cursor = conn.execute(
-                "INSERT INTO events (title, description, start, end, allDay) VALUES (?, ?, ?, ?, ?)",
-                (data["title"], data.get("description", ""), data["start"], data.get("end"), int(data.get("allDay", False)))
+                "INSERT INTO events (title, description, start, end, allDay, created_by, created_division) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                (data["title"], data.get("description", ""), data["start"], data.get("end"), int(data.get("allDay", False)), data.get("created_by", ""), data.get("created_division", "") )
             )
             event_id = cursor.lastrowid
         return jsonify({"status": "created", "id": event_id}), 201

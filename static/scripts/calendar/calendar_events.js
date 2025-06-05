@@ -4,14 +4,14 @@ import { setupEventHandlers } from './calendar_event_handlers.js';
  * 서버에서 이벤트 데이터를 fetch 해오는 함수
  * @returns {Promise<Array>} 이벤트 객체 배열
  */
-export function fetchEvents() {
-  return fetch("/api/events")
-    .then(res => {
-      if (!res.ok) {
-        throw new Error("イベントデータの取得に失敗しました。");
-      }
-      return res.json();
-    });
+export async function fetchEvents() {
+  const division = sessionStorage.getItem("division");
+  if (!division) return [];
+
+  const res = await fetch(`/api/events?created_division=${encodeURIComponent(division)}`);
+  if (!res.ok) throw new Error("予定データの取得に失敗しました");
+
+  return await res.json();
 }
 
 /**

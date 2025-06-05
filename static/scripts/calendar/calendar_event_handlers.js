@@ -46,9 +46,10 @@ export function setupEventHandlers() {
         const startDate = event.startStr.split("T")[0];
         const startTime = event.startStr.includes("T") ? event.startStr.slice(11, 16).replace(":", "") : "";
         const endTime = event.endStr?.includes("T") ? event.endStr.slice(11, 16).replace(":", "") : "";
+        const rawTitle = event.extendedProps?.title || event.title;
 
         document.getElementById("eventModal").style.display = "block";
-        document.getElementById("eventTitle").value = event.title;
+        document.getElementById("eventTitle").value = rawTitle;
         document.getElementById("eventDate").value = startDate;
         document.getElementById("startTime").value = startTime;
         document.getElementById("endTime").value = endTime;
@@ -69,6 +70,8 @@ export function setupEventHandlers() {
           const startT = document.getElementById("startTime").value.trim();
           const endT = document.getElementById("endTime").value.trim();
           const desc = document.getElementById("eventDesc").value.trim();
+          const createdBy = sessionStorage.getItem("fullname");
+          const division = sessionStorage.getItem("division");
 
           if (!title) {
             alert("タイトルを入力してください。");
@@ -93,7 +96,15 @@ export function setupEventHandlers() {
             allDay = false;
           }
 
-          const updatedEvent = { title, description: desc, start: newStart, end: newEnd, allDay };
+          const updatedEvent = {
+            title,
+            description: desc,
+            start: newStart,
+            end: newEnd,
+            allDay,
+            created_by: createdBy,
+            created_division: division
+          };
 
           fetch("/api/events", {
             method: "DELETE",
@@ -137,7 +148,7 @@ export function setupEventHandlers() {
 
         const contentSpan = document.createElement('span');
         contentSpan.className = 'event-title-wrapper';
-        contentSpan.textContent = event.title;
+        contentSpan.textContent = event.extendedProps.displayTitle || event.title;
 
         container.appendChild(contentSpan);
 

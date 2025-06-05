@@ -7,7 +7,8 @@ export function setupTooltipHandlers(info) {
     tooltip = document.createElement('div');
     tooltip.className = 'fc-event-custom-tooltip';
 
-    const title = info.event.title || '(題名なし)';
+    const createdBy = info.event.extendedProps.created_by || info.event.created_by || '(作成者不明)';
+    const rawTitle = info.event.extendedProps.title || info.event.title || '(題名なし)';
     const desc = info.event.extendedProps.description || '(詳細内容なし)';
     const start = info.event.start;
     const end = info.event.end;
@@ -20,7 +21,8 @@ export function setupTooltipHandlers(info) {
     };
 
     tooltip.innerHTML = `
-      <h4>${title}</h4>
+      <div><strong>作成者: ${createdBy}</strong></div>
+      <div><strong>${rawTitle}</strong></div>
       <div class="tooltip-time">${start.toLocaleDateString()} ${formatTime(start)} ${end ? `～ ${formatTime(end)}` : ''}</div>
       <p>${desc}</p>
     `;

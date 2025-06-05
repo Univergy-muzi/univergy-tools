@@ -32,6 +32,8 @@ export function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0)
     const startT = document.getElementById("startTime").value.trim();
     const endT = document.getElementById("endTime").value.trim();
     const desc = document.getElementById("eventDesc").value.trim();
+    const userFullname = sessionStorage.getItem("last_name") + " " + sessionStorage.getItem("first_name");
+    const userDivision = sessionStorage.getItem("division");
 
     if (!title) {
       alert("タイトルを入力してください。");
@@ -61,7 +63,9 @@ export function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0)
       description: desc,
       start: newStart,
       end: newEnd,
-      allDay
+      allDay,
+      created_by: userFullname,
+      created_division: userDivision
     };
 
     fetch("/api/events", {
