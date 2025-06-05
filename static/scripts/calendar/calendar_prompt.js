@@ -75,7 +75,11 @@ export function openEventPrompt(dateStr, calendar, baseHour = 9, baseMinute = 0)
     })
       .then(res => res.json())
       .then(newEvent => {
-        calendar.addEvent({ ...eventData, id: newEvent.id });
+        calendar.addEvent({ 
+          ...eventData, 
+          id: newEvent.id,
+          displayTitle: `${eventData.created_by}：${eventData.title}` 
+        });
         closeModal();
       });
   };
