@@ -13,6 +13,10 @@
   white-space: nowrap;
 }
 
+.nav-right {
+  margin-bottom: 0;
+}
+
 .nav-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -34,6 +38,7 @@
   border: none;
   cursor: pointer;
   line-height: 1.2;
+  white-space: nowrap;
   height: 2.5rem;
   margin-left: 0.1rem;
   box-sizing: border-box;
@@ -61,6 +66,7 @@
   font-size: 0.8rem;
   margin-top: 1rem;
   margin-left: 0.3rem;
+  margin-bottom: 0;
   cursor: pointer;
   transition: background-color var(--transition-speed);
 }

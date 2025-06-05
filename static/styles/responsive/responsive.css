@@ -1,6 +1,6 @@
 @media (max-width: 550px) {
   .logo-centered {
-    max-width: 300px;
+    max-width: 80%;
   }
 
   .nav-bar {
@@ -16,10 +16,11 @@
   }
 
   .nav-button {
-    flex: 1 1 30%;
+    flex: 1 1;
     max-width: 140px;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.6rem;
+    font-size: 70%;
+    width: 33%;
+    padding: 0.4rem 1rem;
     height: auto;
   }
 

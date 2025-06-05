@@ -189,3 +189,7 @@
   max-height: 3.6em;
   line-height: 1.2em;
 }
+
+#calendar-container {
+  margin: 0 !important;
+}
