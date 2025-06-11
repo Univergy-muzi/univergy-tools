@@ -19,7 +19,7 @@ export function setupEventHandlers() {
       document.getElementById("detailDate").innerText = event.startStr.split("T")[0];
       document.getElementById("detailTime").innerText = event.allDay
         ? "終日"
-        : `${event.startStr.slice(11, 16)} ～ ${event.endStr?.slice(11, 16) || ""}`;
+        : `${event.startStr.slice(11, 16)} ${event.endStr ? "～ " + event.endStr.slice(11, 16) : ""}`;
       document.getElementById("detailDescription").innerText = event.extendedProps.description || "(なし)";
       modal.style.display = "block";
 
@@ -45,7 +45,7 @@ export function setupEventHandlers() {
 
         const startDate = event.startStr.split("T")[0];
         const startTime = event.startStr.includes("T") ? event.startStr.slice(11, 16).replace(":", "") : "";
-        const endTime = event.endStr?.includes("T") ? event.endStr.slice(11, 16).replace(":", "") : "";
+        const endTime = event.endStr?.includes("T") ? event.endStr.slice(11, 16).replace(":", "") : startTime;
         const rawTitle = event.extendedProps?.title || event.title;
 
         document.getElementById("eventModal").style.display = "block";

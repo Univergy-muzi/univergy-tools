@@ -23,7 +23,13 @@ export function setupTooltipHandlers(info) {
     tooltip.innerHTML = `
       <div><strong>作成者: ${createdBy}</strong></div>
       <div><strong>${rawTitle}</strong></div>
-      <div class="tooltip-time">${start.toLocaleDateString()} ${formatTime(start)} ${end ? `～ ${formatTime(end)}` : ''}</div>
+      <div class="tooltip-time">
+        ${
+          start.getHours() === 0 && start.getMinutes() === 0 && !end
+            ? `${start.toLocaleDateString()} 終日`
+            : `${start.toLocaleDateString()} ${formatTime(start)}${end ? ` ～ ${formatTime(end)}` : ''}`
+        }
+      </div>
       <p>${desc}</p>
     `;
 
