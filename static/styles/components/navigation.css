@@ -48,6 +48,11 @@
 .nav-button:hover {
   background-color: var(--primary-hover);
   transform: scale(1.03);
+  box-shadow: 0 0 8px rgb(255, 255, 255), 0 0 20px var(--primary-hover);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
 }
 
 .user-division-label {
@@ -68,10 +73,16 @@
   margin-left: 0.3rem;
   margin-bottom: 0;
   cursor: pointer;
-  transition: background-color var(--transition-speed);
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 .logout-button:hover {
   background-color: var(--primary-hover);
   color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 0 8px rgb(255, 255, 255), 0 0 20px var(--primary-hover);
+}
+
+.logout-button:active {
+  transform: scale(0.95);
 }
